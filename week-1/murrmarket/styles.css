@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    /*background: #262626;*/
+}
+/* meta info */
+.cat {
+    display: inline-block; /* like block (like p, starts on a new line), but can have height and width values*/
+    vertical-align: top; /* The element is aligned with the top of the tallest element on the line*/
+    width: 500px;
+    margin: 20px;
+    text-overflow: clip; /* specifies how overflowed content that is not displayed should be signaled to the user*/
+    overflow: hidden; /* Specifies what happens if content overflows an element's box*/
+    position: relative; /* Specifies the type of positioning method used for an element (static, relative, absolute or fixed) */
+}
+
+
+.cat img {
+    width: 90%;
+}
+
+.cat a {
+    display: block;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cat a:hover {
+    color: red;
+}
+
+.cat img:hover {
+    opacity: 0.7;
+}
+
+
+.price {
+    color: orangered;
+}
+
+.old-price {
+    color: gray;
+    text-decoration: line-through;
+}
+
+
+/* star rating */
+.rating {
+    position: relative;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    display: flex;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    display: block;
+    cursor: pointer;
+    width: 50px;
+    /*background: #ccc;*/
+}
+
+.rating label:before {
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 50px;
+    /*color: #101010;*/
+}
+
+.rating label:after {
+    content: '\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    font-size: 50px;
+    color: gold;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+.rating label:hover:after, /* coloring the specific star */
+.rating label:hover ~ label:after, /* coloring stars after (before, with reverse) the pointer */
+.rating input:checked ~ label:after /*coloring selected and after (before, with reverse) checked stars */ {
+    opacity: 1;
+}
+
+/* tiles vs list */
+#plate:checked ~ .controls label[for="plate"],
+#list:checked ~ .controls label[for="list"] {
+    background-color: #808080; /* если кнопка переключения нажата, то она подсвечивается серым */
+}
+
+#list:checked ~ .cat {
+    box-sizing: border-box;
+    width: inherit;
+    height: 300px;
+    float: right;
+    min-width: 600px;
+    margin: 0 0 10px 0;
+}
+
+/* сначала выведем картинку слева*/
+#list:checked ~ .cat figure img {
+    text-align: left;
+    float: left;
+    width: 400px;
+    height: auto;
+    padding-right: 2em;
+}
+
+/* наименование кота мы выведем вместе с остальным описанием правее*/
+#list:checked ~ .cat figure a {
+    text-align: left;
+    float: left;
+    width: 300px;
+}
+
+
